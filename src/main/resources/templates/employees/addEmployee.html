@@ -1,0 +1,72 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="StyleSheet" href="/css/mystyle.css"/>
+		
+		<title th:text="#{addEmployee}"></title>
+	</head>
+	<body>	
+		<header id="main-header">
+			<a id="logo-header" th:href="@{/home}">
+				<span class="site-name" th:text="#{titleIndex}"></span>
+				<span class="site-desc" th:text="#{nameAuthor}"></span>
+			</a>
+			<nav>
+				<ul>
+					<li><a th:href="@{/home}" th:title="#{goToStart}" th:text="#{start}"></a></li>
+					<li><a th:href="@{/list}" th:title="#{goToEmployeeList}" th:text="#{listOfEmployees}"></a></li>
+					<li><a href='#' th:text="#{language}"></a>
+						<ul>
+							<li><a th:href="@{?lang=es}" th:title="#{spanish}" th:text="#{spanish}"></a></li>
+							<li><a th:href="@{?lang=en}" th:title="#{english}" th:text="#{english}"></a></li>
+						</ul>
+					</li>
+					<li><a href='#' th:text="#{profile}"><span sec:authentication="name"></span></a>
+						<ul>
+							<li><form th:action="@{/logout}" method="post"><input type="submit" name="logout" th:value="#{signOut}" /></form></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		
+		<section id="main-content">
+			<div class="content">
+				<h1 th:text="#{addEmployee}"></h1>
+				<div class="row col-md-2">
+					<form th:action="@{/add}" method="post">
+						<div class="row">
+							<div class="col-md-1">
+								<b th:text="#{name} + ':'"></b>
+							</div>
+							<div class="col-md-1">					
+								<input type="text" name="name" required="required"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1">
+								<b th:text="#{phone} + ':'"></b>
+							</div>
+							<div class="col-md-1">
+								<input type="text" name="phone" required="required"/>	
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-1">		
+								<b th:text="#{image} + ':'"></b>
+							</div>
+							<div class="col-md-1">
+								<input type="text" name="image" required="required"/>			
+							</div>
+						</div>
+							
+						<br></br>
+							
+						<input type="submit" name="add" th:value="#{add}"/>
+					</form>
+				</div>
+				<a th:href="@{/home}" th:text="#{return}"></a>
+			</div>
+		</section>
+	</body>
+</html>
